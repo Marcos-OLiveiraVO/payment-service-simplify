@@ -1,11 +1,11 @@
 export interface TransactionProps {
-  value: number;
+  amount: number;
   description: string;
-  method: string;
+  paymentMethod: string;
   cardNumber: number;
   cardOwner: string;
-  cardExpiration: Date;
-  cvvCard: string;
+  expirationDate: Date;
+  cvv: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -23,12 +23,12 @@ export class Transaction {
     return this._id;
   }
 
-  public set value(value: number) {
-    this.props.value = value;
+  public get amount(): number {
+    return this.props.amount;
   }
 
-  public get value(): number {
-    return this.props.value;
+  public set amount(amount: number) {
+    this.props.amount = amount;
   }
 
   public set description(description: string) {
@@ -39,12 +39,12 @@ export class Transaction {
     return this.props.description;
   }
 
-  public get method(): string {
-    return this.props.method;
+  public get paymentMethod(): string {
+    return this.props.paymentMethod;
   }
 
-  public set method(method: string) {
-    this.props.method = method;
+  public set paymentMethod(paymentMethod: string) {
+    this.props.paymentMethod = paymentMethod;
   }
 
   public get cardNumber(): number {
@@ -63,20 +63,20 @@ export class Transaction {
     this.props.cardOwner = cardOwner;
   }
 
-  public get cardExpiration(): Date {
-    return this.props.cardExpiration;
+  public get expirationDate(): Date {
+    return this.props.expirationDate;
   }
 
-  public set cardExpiration(cardExpiration: Date) {
-    this.props.cardExpiration = cardExpiration;
+  public set expirationDate(expirationDate: Date) {
+    this.props.expirationDate = expirationDate;
   }
 
-  public get cvvCard(): string {
-    return this.props.cvvCard;
+  public get cvv(): string {
+    return this.props.cvv;
   }
 
-  public set cvvCard(cvvCard: string) {
-    this.props.cvvCard = cvvCard;
+  public set cvv(cvv: string) {
+    this.props.cvv = cvv;
   }
 
   public get createdAt(): Date | undefined {
