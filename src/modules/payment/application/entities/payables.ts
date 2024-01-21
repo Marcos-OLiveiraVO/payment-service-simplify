@@ -1,4 +1,5 @@
 export interface PayablesProps {
+  client: number;
   status: boolean;
   paymentDate: Date;
   fee?: number;
@@ -17,6 +18,14 @@ export class Payables {
 
   public get id(): number | undefined {
     return this._id;
+  }
+
+  public set client(client: number) {
+    this.props.client = client;
+  }
+
+  public get client(): number {
+    return this.props.client;
   }
 
   public get status(): boolean {
