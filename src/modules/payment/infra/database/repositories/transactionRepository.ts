@@ -1,11 +1,13 @@
 import { Transaction } from 'src/modules/payment/application/entities/transaction';
 import { ITransactionRepository } from 'src/modules/payment/application/interfaces/ITransactionRepository';
+import { TransactionMapper } from '../../adapters/mappers/transactionMapper';
+import { PrismaService } from 'src/shared/database/prismaService';
 
 export class TransactionRepository implements ITransactionRepository {
   constructor(private prisma: PrismaService) {}
 
   async createTransaction(data: Transaction): Promise<Transaction> {
-    const transaction = await this.prisma.transaction({
+    const transaction = await this.prisma.transaction.create({
       data: TransactionMapper.toDatabase(data),
     });
 
@@ -13,7 +15,7 @@ export class TransactionRepository implements ITransactionRepository {
     oneMonthLater.setMonth(+1);
 
     if (data.paymentMethod === 'credit_card') {
-      await this.prisma.payable({
+      await this.prisma.payable.create({
         data: {
           status: 'waiting funds',
           paymentDate: oneMonthLater,
@@ -21,7 +23,7 @@ export class TransactionRepository implements ITransactionRepository {
         },
       });
     } else if (data.paymentMethod === 'debit_card') {
-      await this.prisma.payable({
+      await this.prisma.payable.create({
         data: {
           status: 'paid',
           paymentDate: new Date(),

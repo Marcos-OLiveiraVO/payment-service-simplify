@@ -1,6 +1,6 @@
 export interface PayablesProps {
   client: number;
-  status: boolean;
+  status: string;
   paymentDate: Date;
   fee?: number;
   createdAt?: Date;
@@ -28,11 +28,11 @@ export class Payables {
     return this.props.client;
   }
 
-  public get status(): boolean {
+  public get status(): string {
     return this.props.status;
   }
 
-  public set status(status: boolean) {
+  public set status(status: string) {
     this.props.status = status;
   }
 

@@ -9,7 +9,7 @@ export interface CreateTransaction {
   cardNumber: number;
   cardOwner: string;
   expirationDate: Date;
-  cvv: string;
+  cvv: number;
 }
 
 @Injectable()

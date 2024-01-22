@@ -5,7 +5,7 @@ export interface TransactionProps {
   cardNumber: number;
   cardOwner: string;
   expirationDate: Date;
-  cvv: string;
+  cvv: number;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -71,11 +71,11 @@ export class Transaction {
     this.props.expirationDate = expirationDate;
   }
 
-  public get cvv(): string {
+  public get cvv(): number {
     return this.props.cvv;
   }
 
-  public set cvv(cvv: string) {
+  public set cvv(cvv: number) {
     this.props.cvv = cvv;
   }
 

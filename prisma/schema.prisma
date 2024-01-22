@@ -9,7 +9,7 @@ datasource db {
 
 model payable {
   id          Int      @id @default(autoincrement())
-  status      Boolean
+  status      String
   paymentDate DateTime @map("payment_date")
   fee         Int
 
@@ -24,7 +24,7 @@ model transaction {
   amount         Int
   description    String
   paymentMethod  String   @map("payment_method")
-  cardNumber     String   @map("card_number")
+  cardNumber     Int      @map("card_number")
   cardOwner      String   @map("(card_owner)")
   expirationDate DateTime @map("expiration_date")
   cvv            Int
