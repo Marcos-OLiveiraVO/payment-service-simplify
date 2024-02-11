@@ -17,7 +17,12 @@ export class CreateTransactionUseCase {
   constructor(private transactionRepository: ITransactionRepository) {}
 
   async execute(data: CreateTransaction): Promise<Transaction> {
-    const transaction = new Transaction(data);
+    const cardLastFourDigits = data.cardNumber.slice(-4);
+
+    const transaction = new Transaction({
+      ...data,
+      cardNumber: cardLastFourDigits,
+    });
 
     return await this.transactionRepository.createTransaction(transaction);
   }
