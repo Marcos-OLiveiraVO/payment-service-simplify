@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgres"
   url      = env("DATABASE_URL")
 }
 
@@ -13,8 +13,8 @@ model payable {
   paymentDate DateTime @map("payment_date")
   fee         Int
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @default(now()) @updatedAt
 
   @@map("payables")
 }
@@ -24,13 +24,13 @@ model transaction {
   amount         Int
   description    String
   paymentMethod  String   @map("payment_method")
-  cardNumber     Int      @map("card_number")
+  cardNumber     String   @map("card_number")
   cardOwner      String   @map("(card_owner)")
   expirationDate DateTime @map("expiration_date")
-  cvv            Int
+  cvv            String
 
-  createdAt DateTime
-  updatedAt DateTime
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @default(now()) @updatedAt
 
   @@map("transactions")
 }
