@@ -1,7 +1,7 @@
 import { CreateTransactionUseCase } from 'src/modules/payment/application/use-cases/createTransactionUseCase';
 import { CreateTransactionDTO } from '../../adapters/dtos/transactionDTO';
 import { Body, Controller, HttpCode, Post } from '@nestjs/common';
-import { Transaction } from 'src/modules/payment/application/entities/transaction';
+import { TransactionViewModel } from '../viewModels/transactionViewModel';
 
 @Controller('transaction')
 export class CreateTransactionController {
@@ -9,8 +9,9 @@ export class CreateTransactionController {
 
   @Post()
   @HttpCode(201)
-  async handle(@Body() data: CreateTransactionDTO): Promise<Transaction> {
-    console.log(data);
-    return this.createTransactionUseCase.execute(data);
+  async handle(@Body() data: CreateTransactionDTO): Promise<TransactionViewModel> {
+    const transaction = await this.createTransactionUseCase.execute(data);
+
+    return TransactionViewModel.toHttp(transaction);
   }
 }

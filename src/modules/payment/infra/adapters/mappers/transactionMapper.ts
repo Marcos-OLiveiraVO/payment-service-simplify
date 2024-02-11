@@ -14,6 +14,8 @@ export class TransactionMapper {
         cardOwner: entity.cardOwner,
         expirationDate: entity.expirationDate,
         cvv: entity.cvv,
+        createdAt: entity.createdAt,
+        updatedAt: entity.updatedAt,
       },
       entity.id,
     );

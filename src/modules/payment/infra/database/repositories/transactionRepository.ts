@@ -2,7 +2,9 @@ import { Transaction } from 'src/modules/payment/application/entities/transactio
 import { ITransactionRepository } from 'src/modules/payment/application/interfaces/ITransactionRepository';
 import { TransactionMapper } from '../../adapters/mappers/transactionMapper';
 import { PrismaService } from 'src/shared/database/prismaService';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class TransactionRepository implements ITransactionRepository {
   constructor(private prisma: PrismaService) {}
 
