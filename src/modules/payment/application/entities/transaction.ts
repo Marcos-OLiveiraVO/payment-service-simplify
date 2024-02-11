@@ -2,10 +2,10 @@ export interface TransactionProps {
   amount: number;
   description: string;
   paymentMethod: string;
-  cardNumber: number;
+  cardNumber: string;
   cardOwner: string;
   expirationDate: Date;
-  cvv: number;
+  cvv: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -47,11 +47,11 @@ export class Transaction {
     this.props.paymentMethod = paymentMethod;
   }
 
-  public get cardNumber(): number {
+  public get cardNumber(): string {
     return this.props.cardNumber;
   }
 
-  public set cardNumber(cardNumber: number) {
+  public set cardNumber(cardNumber: string) {
     this.props.cardNumber = cardNumber;
   }
 
@@ -71,11 +71,11 @@ export class Transaction {
     this.props.expirationDate = expirationDate;
   }
 
-  public get cvv(): number {
+  public get cvv(): string {
     return this.props.cvv;
   }
 
-  public set cvv(cvv: number) {
+  public set cvv(cvv: string) {
     this.props.cvv = cvv;
   }
 
