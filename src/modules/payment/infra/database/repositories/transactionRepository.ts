@@ -3,6 +3,7 @@ import { ITransactionRepository } from 'src/modules/payment/application/interfac
 import { TransactionMapper } from '../../adapters/mappers/transactionMapper';
 import { PrismaService } from 'src/shared/database/prismaService';
 import { Injectable } from '@nestjs/common';
+import { thirdDaysLater } from 'src/shared/utils/date';
 
 @Injectable()
 export class TransactionRepository implements ITransactionRepository {
@@ -13,14 +14,11 @@ export class TransactionRepository implements ITransactionRepository {
       data: TransactionMapper.toDatabase(data),
     });
 
-    const oneMonthLater = new Date();
-    oneMonthLater.setMonth(+1);
-
     if (data.paymentMethod === 'credit_card') {
       await this.prisma.payable.create({
         data: {
           status: 'waiting funds',
-          paymentDate: oneMonthLater,
+          paymentDate: thirdDaysLater(),
           fee: 5,
         },
       });
