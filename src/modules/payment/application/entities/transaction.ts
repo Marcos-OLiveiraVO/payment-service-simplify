@@ -1,5 +1,4 @@
 export interface TransactionProps {
-  profileClient: number;
   amount: number;
   description: string;
   paymentMethod: string;
@@ -24,12 +23,8 @@ export class Transaction {
     return this._id;
   }
 
-  public get profileClient(): number {
-    return this.props.profileClient;
-  }
-
-  public set profileClient(profileClient: number) {
-    this.props.profileClient = profileClient;
+  public set id(id: number | undefined) {
+    this._id = id;
   }
 
   public get amount(): number {

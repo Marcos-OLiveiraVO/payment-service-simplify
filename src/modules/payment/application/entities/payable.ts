@@ -1,5 +1,6 @@
-export interface PayablesProps {
-  client: number;
+export interface PayableProps {
+  profileClient: number;
+  transaction: number;
   status: string;
   paymentDate: Date;
   fee?: number;
@@ -7,11 +8,11 @@ export interface PayablesProps {
   updatedAt?: Date;
 }
 
-export class Payables {
-  private props: PayablesProps;
+export class Payable {
+  private props: PayableProps;
   private _id?: number;
 
-  constructor(props: PayablesProps, id?: number) {
+  constructor(props: PayableProps, id?: number) {
     this.props = props;
     this._id = id;
   }
@@ -20,12 +21,24 @@ export class Payables {
     return this._id;
   }
 
-  public set client(client: number) {
-    this.props.client = client;
+  public set id(id: number | undefined) {
+    this._id = id;
   }
 
-  public get client(): number {
-    return this.props.client;
+  public set profileClient(profileClient: number) {
+    this.props.profileClient = profileClient;
+  }
+
+  public get profileClient(): number {
+    return this.props.profileClient;
+  }
+
+  public set transaction(transaction: number) {
+    this.props.transaction = transaction;
+  }
+
+  public get transaction(): number {
+    return this.props.transaction;
   }
 
   public get status(): string {

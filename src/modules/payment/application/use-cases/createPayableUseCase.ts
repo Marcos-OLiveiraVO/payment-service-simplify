@@ -1,0 +1,30 @@
+import { thirdDaysLater } from 'src/shared/utils/date';
+import { ITransactionRepository } from '../interfaces/ITransactionRepository';
+import { CreateTransaction } from './createTransactionUseCase';
+import { Payable } from '../entities/payable';
+import { Injectable } from '@nestjs/common';
+
+export interface CreatePayable extends CreateTransaction {
+  transaction: number;
+}
+
+@Injectable()
+export class CreatePayableUseCase {
+  constructor(private transactionRepository: ITransactionRepository) {}
+
+  async execute(data: CreatePayable): Promise<void> {
+    const fee = data.paymentMethod === 'debit_card' ? 3 : 5;
+    const paymentDate = data.paymentMethod === 'debit_card' ? new Date() : thirdDaysLater();
+    const status = data.paymentMethod === 'debit_card' ? 'paid' : 'waiting_funds';
+
+    const payable = new Payable({
+      transaction: data.transaction,
+      profileClient: data.profileClientId,
+      status,
+      paymentDate,
+      fee,
+    });
+
+    return await this.transactionRepository.createPayableTransaction(payable);
+  }
+}

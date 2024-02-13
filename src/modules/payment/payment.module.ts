@@ -4,10 +4,15 @@ import { CreateTransactionUseCase } from './application/use-cases/createTransact
 import { DatabaseModule } from 'src/shared/database/database.module';
 import { ITransactionRepository } from './application/interfaces/ITransactionRepository';
 import { TransactionRepository } from './infra/database/repositories/transactionRepository';
+import { CreatePayableUseCase } from './application/use-cases/createPayableUseCase';
 
 @Module({
   imports: [DatabaseModule],
-  providers: [CreateTransactionUseCase, { provide: ITransactionRepository, useClass: TransactionRepository }],
+  providers: [
+    CreateTransactionUseCase,
+    CreatePayableUseCase,
+    { provide: ITransactionRepository, useClass: TransactionRepository },
+  ],
   controllers: [CreateTransactionController],
 })
 export class PaymentModule {}

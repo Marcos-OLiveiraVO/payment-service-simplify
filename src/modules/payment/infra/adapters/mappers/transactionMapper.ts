@@ -7,7 +7,6 @@ export class TransactionMapper {
   static toDomain(entity: transactionModel): transactionEntity {
     return new transactionEntity(
       {
-        profileClient: entity.profileClientId,
         amount: entity.amount,
         description: entity.description,
         paymentMethod: entity.paymentMethod,
@@ -24,7 +23,6 @@ export class TransactionMapper {
   static toDatabase(entity: transactionEntity): transactionModel {
     return {
       id: entity.id,
-      profileClientId: entity.profileClient,
       amount: entity.amount,
       description: entity.description,
       paymentMethod: entity.paymentMethod,
