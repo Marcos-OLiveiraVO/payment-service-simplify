@@ -3,17 +3,7 @@ import { Transaction } from '../entities/transaction';
 import { ITransactionRepository } from '../interfaces/ITransactionRepository';
 import { calculateFee } from '../service/calculateFee';
 import { CreatePayableUseCase } from './createPayableUseCase';
-
-export interface CreateTransaction {
-  profileClientId: number;
-  amount: number;
-  description: string;
-  paymentMethod: string;
-  cardNumber: string;
-  cardOwner: string;
-  expirationDate: Date;
-  cvv: string;
-}
+import { CreateTransaction } from '../interfaces/transactionRequest';
 
 @Injectable()
 export class CreateTransactionUseCase {

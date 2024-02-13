@@ -1,12 +1,8 @@
 import { thirdDaysLater } from 'src/shared/utils/date';
 import { ITransactionRepository } from '../interfaces/ITransactionRepository';
-import { CreateTransaction } from './createTransactionUseCase';
 import { Payable } from '../entities/payable';
 import { Injectable } from '@nestjs/common';
-
-export interface CreatePayable extends CreateTransaction {
-  transaction: number;
-}
+import { CreatePayable } from '../interfaces/transactionRequest';
 
 @Injectable()
 export class CreatePayableUseCase {
