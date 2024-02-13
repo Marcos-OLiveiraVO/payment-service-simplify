@@ -7,30 +7,46 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model profileClient {
+  id          Int           @id @default(autoincrement())
+  name        String
+  email       String        @unique
+  transaction transaction[]
+
+  @@map("profile_clients")
+}
+
 model payable {
-  id          Int      @id @default(autoincrement())
-  status      String
-  paymentDate DateTime @map("payment_date")
-  fee         Int
+  id            Int      @id @default(autoincrement())
+  transactionId Int      @map("transaction_id")
+  status        String
+  paymentDate   DateTime @map("payment_date")
+  fee           Int
 
   createdAt DateTime? @default(now())
   updatedAt DateTime? @default(now()) @updatedAt
+
+  Transaction transaction @relation(fields: [transactionId], references: [id])
 
   @@map("payables")
 }
 
 model transaction {
-  id             Int      @id @default(autoincrement())
-  amount         Int
-  description    String
-  paymentMethod  String   @map("payment_method")
-  cardNumber     String   @map("card_number")
-  cardOwner      String   @map("(card_owner)")
-  expirationDate DateTime @map("expiration_date")
-  cvv            String
+  id              Int      @id @default(autoincrement())
+  profileClientId Int      @map("profile_client_id")
+  amount          Int
+  description     String
+  paymentMethod   String   @map("payment_method")
+  cardNumber      String   @map("card_number")
+  cardOwner       String   @map("card_owner")
+  expirationDate  DateTime @map("expiration_date")
+  cvv             String
 
   createdAt DateTime? @default(now())
   updatedAt DateTime? @default(now()) @updatedAt
+
+  ProfileClient profileClient @relation(fields: [profileClientId], references: [id])
+  payable       payable[]
 
   @@map("transactions")
 }

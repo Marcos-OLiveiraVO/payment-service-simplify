@@ -32,6 +32,10 @@ export class TransactionRepository implements ITransactionRepository {
       });
     }
 
+    const profileTransactions = await this.prisma.transaction.findMany({
+      where: { payeer: 3, payable: { some: { status: 'paid' } } },
+    });
+
     return TransactionMapper.toDomain(transaction);
   }
 }

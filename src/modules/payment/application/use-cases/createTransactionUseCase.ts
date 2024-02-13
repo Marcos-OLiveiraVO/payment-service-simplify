@@ -3,6 +3,7 @@ import { Transaction } from '../entities/transaction';
 import { ITransactionRepository } from '../interfaces/ITransactionRepository';
 
 export interface CreateTransaction {
+  profileClientId: number;
   amount: number;
   description: string;
   paymentMethod: string;
@@ -21,6 +22,7 @@ export class CreateTransactionUseCase {
 
     const transaction = new Transaction({
       ...data,
+      profileClient: data.profileClientId,
       cardNumber: cardLastFourDigits,
     });
 

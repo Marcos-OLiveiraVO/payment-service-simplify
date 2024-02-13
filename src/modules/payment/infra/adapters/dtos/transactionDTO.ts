@@ -1,7 +1,12 @@
 import { Transform } from 'class-transformer';
-import { IsDate, IsNotEmpty, IsNumber, IsString, Length } from 'class-validator';
+import { IsDate, IsNotEmpty, IsNumber, IsPositive, IsString, Length } from 'class-validator';
 
 export class CreateTransactionDTO {
+  @IsNumber({}, { message: 'profileClientId must be a number' })
+  @IsPositive({ message: 'profileClientID must be a positive number' })
+  @IsNotEmpty({ message: 'profileClientId must not be empty' })
+  profileClientId: number;
+
   @IsNotEmpty({ message: 'amount must not be empty' })
   @IsNumber({}, { message: 'amount must be number' })
   amount: number;
