@@ -1,3 +1,6 @@
+import { profileClient } from '@prisma/client';
+import { Payable } from '../entities/payable';
+
 export interface CreateTransaction {
   profileClientId: number;
   amount: number;
@@ -13,4 +16,12 @@ export interface CreatePayable {
   profileClientId: number;
   transaction: number;
   paymentMethod: string;
+}
+
+export interface PayableWithPagination {
+  profileClient: profileClient;
+  payables: Payable[];
+  actualPage: number;
+  totalPages: number;
+  totalPayables: number;
 }
