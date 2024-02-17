@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { Payable } from '../entities/payable';
 import { ITransactionRepository } from '../interfaces/ITransactionRepository';
 import { PayableWithPagination } from '../interfaces/transactionRequest';
 
