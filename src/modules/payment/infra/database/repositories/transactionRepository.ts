@@ -7,7 +7,6 @@ import { PayableMapper } from '../../adapters/mappers/payableMapper';
 import { Payable } from 'src/modules/payment/application/entities/payable';
 import { GetPayable } from 'src/modules/payment/application/use-cases/getPayableUseCase';
 import { PayableWithPagination } from 'src/modules/payment/application/interfaces/transactionRequest';
-import { ProfileClientMapper } from 'src/modules/profileClient/infra/adapters/mappers/profileClientMapper';
 
 @Injectable()
 export class TransactionRepository implements ITransactionRepository {
@@ -45,7 +44,6 @@ export class TransactionRepository implements ITransactionRepository {
     const payablesMapped = payables.map(payables => PayableMapper.toDomain(payables));
 
     const payableWithPagination = {
-      profileClient: ProfileClientMapper.toDomain(payables[0].ProfileClient),
       payables: payablesMapped,
       actualPage,
       totalPages,

@@ -1,4 +1,3 @@
-import { profileClient } from '@prisma/client';
 import { Payable } from '../entities/payable';
 
 export interface CreateTransaction {
@@ -19,7 +18,6 @@ export interface CreatePayable {
 }
 
 export interface PayableWithPagination {
-  profileClient: profileClient;
   payables: Payable[];
   actualPage: number;
   totalPages: number;

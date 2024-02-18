@@ -18,7 +18,7 @@ export class CreateTransactionDTO {
 
   @IsNotEmpty({ message: 'paymentMethod must not be empty' })
   @IsString({ message: 'paymentMethod must be a string' })
-  @Length(8, 10, { message: 'paymentMethod must be between 8 and 10 characters' })
+  @Length(8, 12, { message: 'paymentMethod must be between 8 and 10 characters' })
   paymentMethod: string;
 
   @IsNotEmpty({ message: 'cardNumber must not be empty' })
