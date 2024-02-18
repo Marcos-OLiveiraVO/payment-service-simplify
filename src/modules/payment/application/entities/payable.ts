@@ -1,5 +1,7 @@
+import { ProfileClient } from 'src/modules/profileClient/application/entities/profileClient';
+
 export interface PayableProps {
-  profileClient: number;
+  profileClient: number | ProfileClient;
   transaction: number;
   status: string;
   paymentDate: Date;
@@ -29,7 +31,7 @@ export class Payable {
     this.props.profileClient = profileClient;
   }
 
-  public get profileClient(): number {
+  public get profileClient(): number | ProfileClient {
     return this.props.profileClient;
   }
 

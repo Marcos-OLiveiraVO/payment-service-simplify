@@ -1,11 +1,16 @@
-import { payable as PayableModel } from '@prisma/client';
+import { payable as PayableModel, profileClient } from '@prisma/client';
 import { Payable as PayableEntity } from 'src/modules/payment/application/entities/payable';
+import { ProfileClientMapper } from 'src/modules/profileClient/infra/adapters/mappers/profileClientMapper';
+
+export interface PayableToDomainInput extends PayableModel {
+  ProfileClient: profileClient;
+}
 
 export class PayableMapper {
-  static toDomain(entity: PayableModel): PayableEntity {
+  static toDomain(entity: PayableToDomainInput): PayableEntity {
     return new PayableEntity(
       {
-        profileClient: entity.profileClientId,
+        profileClient: ProfileClientMapper.toDomain(entity.ProfileClient),
         transaction: entity.transactionId,
         paymentDate: entity.paymentDate,
         status: entity.status,
@@ -19,7 +24,7 @@ export class PayableMapper {
   static toDatabase(entity: PayableEntity): PayableModel {
     return {
       id: entity.id,
-      profileClientId: entity.profileClient,
+      profileClientId: entity.profileClient as number,
       transactionId: entity.transaction,
       status: entity.status,
       fee: entity.fee,
