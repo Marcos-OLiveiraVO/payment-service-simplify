@@ -2,7 +2,8 @@ import { GetPayableUseCase } from 'src/modules/payment/application/use-cases/get
 import { GetPayableDTO } from '../../adapters/dtos/getPayableDTO';
 import { Controller, Get, HttpCode, Query } from '@nestjs/common';
 import { PayableViewModel } from '../viewModels/payableViewModel';
-import { Payable } from 'src/modules/payment/application/entities/payable';
+import { ProfileClientViewModel } from 'src/modules/profileClient/infra/http/viewModels/profileClientViewModel';
+import { ProfileClient } from 'src/modules/profileClient/application/entities/profileClient';
 
 @Controller('payable')
 export class GetPayableController {
@@ -13,8 +14,11 @@ export class GetPayableController {
   async handle(@Query() data: GetPayableDTO) {
     const response = await this.getPayableUseCase.execute(data);
 
+    const profile = response.payables[0]?.profileClient;
+    const profileClientMapped = profile ? ProfileClientViewModel.toHttp(profile as ProfileClient) : undefined;
+
     const payableMapped = {
-      profileClient: response.payables[0].profileClient,
+      profileClient: profileClientMapped,
       payables: response.payables.map(payable => PayableViewModel.toHttp(payable)),
       actualPage: response.actualPage,
       totalPages: response.totalPages,
