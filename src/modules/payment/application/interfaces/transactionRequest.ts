@@ -19,7 +19,7 @@ export interface CreatePayable {
 
 export interface PayableWithPagination {
   payables: Payable[];
-  actualPage: number;
+  currentPage: number;
   totalPages: number;
   totalPayables: number;
 }

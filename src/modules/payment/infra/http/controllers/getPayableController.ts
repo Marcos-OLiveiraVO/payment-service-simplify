@@ -20,7 +20,7 @@ export class GetPayableController {
     const payableMapped = {
       profileClient: profileClientMapped,
       payables: response.payables.map(payable => PayableViewModel.toHttp(payable)),
-      actualPage: response.actualPage,
+      currentPage: response.currentPage,
       totalPages: response.totalPages,
       totalPayables: response.totalPayables,
     };

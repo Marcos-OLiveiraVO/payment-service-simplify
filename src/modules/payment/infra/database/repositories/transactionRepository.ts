@@ -7,6 +7,7 @@ import { PayableMapper } from '../../adapters/mappers/payableMapper';
 import { Payable } from 'src/modules/payment/application/entities/payable';
 import { GetPayable } from 'src/modules/payment/application/use-cases/getPayableUseCase';
 import { PayableWithPagination } from 'src/modules/payment/application/interfaces/transactionRequest';
+import { paginate, paginationSkipItens } from 'src/shared/utils/paginate';
 
 @Injectable()
 export class TransactionRepository implements ITransactionRepository {
@@ -27,25 +28,29 @@ export class TransactionRepository implements ITransactionRepository {
   }
 
   async getPayableInformation(data: GetPayable): Promise<PayableWithPagination> {
+    const page = data.page ?? 1;
+    const limit = data.limit ?? 10;
+
+    const skipItems = paginationSkipItens(page, limit);
+
     const payables = await this.prisma.payable.findMany({
       where: {
         profileClientId: data.profileClientId,
         status: data.status,
       },
-      take: data.limit,
-      skip: data.offset,
+      take: limit,
+      skip: skipItems,
       include: { Transaction: true, ProfileClient: true },
     });
 
-    const actualPage = data.offset / data.limit + 1;
     const totalPayables = payables.length;
-    const totalPages = Math.ceil(totalPayables / data.limit);
+    const totalPages = paginate(totalPayables, limit);
 
     const payablesMapped = payables.map(payables => PayableMapper.toDomain(payables));
 
     const payableWithPagination = {
       payables: payablesMapped,
-      actualPage,
+      currentPage: page,
       totalPages,
       totalPayables,
     };

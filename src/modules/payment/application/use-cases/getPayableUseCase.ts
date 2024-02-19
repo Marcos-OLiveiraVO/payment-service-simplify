@@ -6,7 +6,7 @@ export interface GetPayable {
   profileClientId: number;
   status: string;
   limit: number;
-  offset: number;
+  page: number;
 }
 
 @Injectable()

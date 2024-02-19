@@ -10,9 +10,10 @@ export class GetPayableDTO {
   @IsString({ message: 'status must be a string' })
   status: string;
 
-  @IsOptional({ message: 'offset must be opcional' })
-  @IsNumber({}, { message: 'offset must be a number' })
-  offset: number;
+  @IsOptional({ message: 'page must be opcional' })
+  @IsNumber({}, { message: 'page must be a number' })
+  @IsPositive({ message: 'page must be positive' })
+  page: number;
 
   @IsOptional({ message: 'limit must be opcional' })
   @IsNumber({}, { message: 'limit must be a number' })
