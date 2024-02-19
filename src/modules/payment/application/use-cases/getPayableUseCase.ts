@@ -1,13 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ITransactionRepository } from '../interfaces/ITransactionRepository';
-import { PayableWithPagination } from '../interfaces/transactionRequest';
-
-export interface GetPayable {
-  profileClientId: number;
-  status: string;
-  limit: number;
-  page: number;
-}
+import { GetPayable, PayableWithPagination } from '../interfaces/transactionRequest';
 
 @Injectable()
 export class GetPayableUseCase {

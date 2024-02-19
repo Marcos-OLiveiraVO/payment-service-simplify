@@ -5,8 +5,7 @@ import { PrismaService } from 'src/shared/database/prismaService';
 import { Injectable } from '@nestjs/common';
 import { PayableMapper } from '../../adapters/mappers/payableMapper';
 import { Payable } from 'src/modules/payment/application/entities/payable';
-import { GetPayable } from 'src/modules/payment/application/use-cases/getPayableUseCase';
-import { PayableWithPagination } from 'src/modules/payment/application/interfaces/transactionRequest';
+import { GetPayable, PayableWithPagination } from 'src/modules/payment/application/interfaces/transactionRequest';
 import { paginate, paginationSkipItens } from 'src/shared/utils/paginate';
 
 @Injectable()

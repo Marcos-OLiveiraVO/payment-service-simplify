@@ -23,3 +23,10 @@ export interface PayableWithPagination {
   totalPages: number;
   totalPayables: number;
 }
+
+export interface GetPayable {
+  profileClientId: number;
+  status: string;
+  limit: number;
+  page: number;
+}
