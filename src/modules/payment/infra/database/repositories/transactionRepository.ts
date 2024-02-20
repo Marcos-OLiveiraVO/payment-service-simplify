@@ -30,7 +30,15 @@ export class TransactionRepository implements ITransactionRepository {
     const page = data.page ?? 1;
     const limit = data.limit ?? 10;
 
+    const totalPayables = await this.prisma.payable.count({
+      where: {
+        profileClientId: data.profileClientId,
+        status: data.status,
+      },
+    });
+
     const skipItems = paginationSkipItens(page, limit);
+    const totalPages = paginate(totalPayables, limit);
 
     const payables = await this.prisma.payable.findMany({
       where: {
@@ -41,9 +49,6 @@ export class TransactionRepository implements ITransactionRepository {
       skip: skipItems,
       include: { Transaction: true, ProfileClient: true },
     });
-
-    const totalPayables = payables.length;
-    const totalPages = paginate(totalPayables, limit);
 
     const payablesMapped = payables.map(payables => PayableMapper.toDomain(payables));
 
