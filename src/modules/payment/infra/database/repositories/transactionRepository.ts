@@ -5,7 +5,12 @@ import { PrismaService } from 'src/shared/database/prismaService';
 import { Injectable } from '@nestjs/common';
 import { PayableMapper } from '../../adapters/mappers/payableMapper';
 import { Payable } from 'src/modules/payment/application/entities/payable';
-import { GetPayable, PayableWithPagination } from 'src/modules/payment/application/interfaces/transactionRequest';
+import {
+  GetPayable,
+  GetTransactions,
+  PayableWithPagination,
+  TransactionsWithPagination,
+} from 'src/modules/payment/application/interfaces/transactionRequest';
 import { paginate, paginationSkipItens } from 'src/shared/utils/paginate';
 
 @Injectable()
@@ -60,5 +65,31 @@ export class TransactionRepository implements ITransactionRepository {
     };
 
     return payableWithPagination;
+  }
+
+  async getTransactions(data: GetTransactions): Promise<TransactionsWithPagination> {
+    const page = data.page ?? 1;
+    const limit = data.limit ?? 10;
+
+    const totalTransactions = await this.prisma.transaction.count();
+
+    const skipItems = paginationSkipItens(page, limit);
+    const totalPages = paginate(totalTransactions, limit);
+
+    const transactions = await this.prisma.transaction.findMany({
+      take: limit,
+      skip: skipItems,
+    });
+
+    const transactionsMapped = transactions.map(transaction => TransactionMapper.toDomain(transaction));
+
+    const transactionsWithPagination = {
+      transactions: transactionsMapped,
+      currentPage: page,
+      totalPages,
+      totalTransactions,
+    };
+
+    return transactionsWithPagination;
   }
 }

@@ -7,6 +7,8 @@ import { TransactionRepository } from './infra/database/repositories/transaction
 import { CreatePayableUseCase } from './application/use-cases/createPayableUseCase';
 import { GetPayableController } from './infra/http/controllers/getPayableController';
 import { GetPayableUseCase } from './application/use-cases/getPayableUseCase';
+import { GetTransactionsController } from './infra/http/controllers/getTransactionsController';
+import { GetTransactionsUseCase } from './application/use-cases/getTransactionsUseCase';
 
 @Module({
   imports: [DatabaseModule],
@@ -14,8 +16,10 @@ import { GetPayableUseCase } from './application/use-cases/getPayableUseCase';
     CreateTransactionUseCase,
     CreatePayableUseCase,
     GetPayableUseCase,
+    GetTransactionsUseCase,
     { provide: ITransactionRepository, useClass: TransactionRepository },
   ],
-  controllers: [CreateTransactionController, GetPayableController],
+
+  controllers: [CreateTransactionController, GetPayableController, GetTransactionsController],
 })
 export class PaymentModule {}

@@ -1,5 +1,5 @@
 import { Transform } from 'class-transformer';
-import { IsDate, IsNotEmpty, IsNumber, IsPositive, IsString, Length } from 'class-validator';
+import { IsDate, IsNotEmpty, IsNumber, IsOptional, IsPositive, IsString, Length } from 'class-validator';
 
 export class CreateTransactionDTO {
   @IsNumber({}, { message: 'profileClientId must be a number' })
@@ -40,3 +40,17 @@ export class CreateTransactionDTO {
   @Length(3, 3, { message: 'cvv must be exactly 3 numbers' })
   cvv: string;
 }
+
+export class BasePagination {
+  @IsOptional({ message: 'limit must be optional' })
+  @IsNumber({}, { message: 'limit must be a number' })
+  @IsPositive({ message: 'limit must be a positive number' })
+  limit: number;
+
+  @IsOptional({ message: 'page must be optional' })
+  @IsNumber({}, { message: 'page must be a number' })
+  @IsPositive({ message: 'page must be a positive number' })
+  page: number;
+}
+
+export class GetTransactionsDTO extends BasePagination {}

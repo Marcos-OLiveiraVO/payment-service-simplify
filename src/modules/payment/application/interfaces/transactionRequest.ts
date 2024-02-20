@@ -1,4 +1,5 @@
 import { Payable } from '../entities/payable';
+import { Transaction } from '../entities/transaction';
 
 export interface CreateTransaction {
   profileClientId: number;
@@ -24,9 +25,21 @@ export interface PayableWithPagination {
   totalPayables: number;
 }
 
-export interface GetPayable {
+export interface BasePagination {
+  limit?: number;
+  page?: number;
+}
+
+export interface GetPayable extends BasePagination {
   profileClientId: number;
   status: string;
-  limit: number;
-  page: number;
+}
+
+export interface GetTransactions extends BasePagination {}
+
+export interface TransactionsWithPagination {
+  transactions: Transaction[];
+  currentPage: number;
+  totalPages: number;
+  totalTransactions: number;
 }
