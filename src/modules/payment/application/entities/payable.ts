@@ -1,4 +1,4 @@
-import { ProfileClient } from 'src/modules/profileClient/application/entities/profileClient';
+import { ProfileClient } from 'modules/profileClient/application/entities/profileClient';
 import { Transaction } from './transaction';
 
 export interface PayableProps {
