@@ -1,4 +1,4 @@
-import { paginate, paginationSkipItens } from 'src/shared/utils/paginate';
+import { paginate, paginationSkipItens } from '@shared/utils/paginate';
 import { Payable } from '../../application/entities/payable';
 import { Transaction } from '../../application/entities/transaction';
 import { ITransactionRepository } from '../../application/interfaces/ITransactionRepository';

@@ -13,14 +13,15 @@
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,
+    "paths": {
+      "@shared/*": ["shared/*"],
+      "@payment/*": ["modules/payment/*"],
+      "@profileClient/*": ["modules/profileClient/*"]
+    },
+    "resolveJsonModule": true,
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "paths": {
-      "@shared/*": ["shared/*"]
-    }
+    "noFallthroughCasesInSwitch": false
   }
 }

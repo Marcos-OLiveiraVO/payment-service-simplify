@@ -1,12 +1,17 @@
+import { Transaction } from '@payment/application/entities/transaction';
+import { ITransactionRepository } from '@payment/application/interfaces/ITransactionRepository';
 import { TransactionMapper } from '../../adapters/mappers/transactionMapper';
+import { PrismaService } from '@shared/database/prismaService';
 import { Injectable } from '@nestjs/common';
 import { PayableMapper } from '../../adapters/mappers/payableMapper';
+import { Payable } from '@payment/application/entities/payable';
+import {
+  GetPayable,
+  GetTransactions,
+  PayableWithPagination,
+  TransactionsWithPagination,
+} from '@payment/application/interfaces/transactionRequest';
 import { paginate, paginationSkipItens } from '@shared/utils/paginate';
-import { GetPayable, GetTransactions, PayableWithPagination, TransactionsWithPagination } from 'modules/payment/application/interfaces/transactionRequest';
-import { Payable } from 'modules/payment/application/entities/payable';
-import { Transaction } from 'modules/payment/application/entities/transaction';
-import { PrismaService } from '@shared/database/prismaService';
-import { ITransactionRepository } from 'modules/payment/application/interfaces/ITransactionRepository';
 
 @Injectable()
 export class TransactionRepository implements ITransactionRepository {
