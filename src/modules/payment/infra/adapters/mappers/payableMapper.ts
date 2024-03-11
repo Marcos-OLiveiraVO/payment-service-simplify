@@ -1,6 +1,6 @@
 import { payable as PayableModel, profileClient, transaction } from '@prisma/client';
-import { Payable as PayableEntity } from 'src/modules/payment/application/entities/payable';
-import { ProfileClientMapper } from 'src/modules/profileClient/infra/adapters/mappers/profileClientMapper';
+import { Payable as PayableEntity } from '@payment/application/entities/payable';
+import { ProfileClientMapper } from '@profileClient/infra/adapters/mappers/profileClientMapper';
 import { TransactionMapper } from './transactionMapper';
 
 export interface PayableToDomainInput extends PayableModel {

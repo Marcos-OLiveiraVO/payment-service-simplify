@@ -1,6 +1,6 @@
-import { Payable } from 'src/modules/payment/application/entities/payable';
+import { Payable } from '@payment/application/entities/payable';
 import { TransactionViewModel } from './transactionViewModel';
-import { Transaction } from 'src/modules/payment/application/entities/transaction';
+import { Transaction } from '@payment/application/entities/transaction';
 
 export class PayableViewModel {
   static toHttp(entity: Payable) {

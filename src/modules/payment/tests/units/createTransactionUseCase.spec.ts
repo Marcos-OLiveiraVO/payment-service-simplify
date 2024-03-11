@@ -1,8 +1,8 @@
-import { Transaction } from '../../application/entities/transaction';
-import { CreatePayableUseCase } from '../../application/use-cases/createPayableUseCase';
-import { CreateTransactionUseCase } from '../../application/use-cases/createTransactionUseCase';
-import { TransactionInMemoryRepository } from '../inMemoryRepository/transactionInMemoryRepository';
-import { transactionMock } from '../mockData/mockTransaction';
+import { TransactionInMemoryRepository } from "../inMemoryRepository/transactionInMemoryRepository";
+import { CreateTransactionUseCase } from "@payment/application/use-cases/createTransactionUseCase";
+import { CreatePayableUseCase } from "@payment/application/use-cases/createPayableUseCase";
+import { transactionMock } from "../mockData/mockTransaction";
+import { Transaction } from "@payment/application/entities/transaction";
 
 let transactionRepository: TransactionInMemoryRepository;
 let createTransactionUseCase: CreateTransactionUseCase;
@@ -19,6 +19,6 @@ describe('Create Transaction UseCase', () => {
     const transaction = await createTransactionUseCase.execute(transactionMock);
 
     expect(transaction).toBeInstanceOf(Transaction);
-    expect(transaction.cardOwner).toBe(transactionMock.cardOwner)
+    expect(transaction.cardOwner).toBe(transactionMock.cardOwner);
   });
 });

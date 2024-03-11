@@ -1,5 +1,5 @@
 import { profileClient } from '@prisma/client';
-import { ProfileClient } from 'src/modules/profileClient/application/entities/profileClient';
+import { ProfileClient } from '@profileClient/application/entities/profileClient';
 
 export class ProfileClientMapper {
   static toDomain(entity: profileClient): ProfileClient {

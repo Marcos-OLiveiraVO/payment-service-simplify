@@ -1,4 +1,4 @@
-import { Transaction } from 'src/modules/payment/application/entities/transaction';
+import { Transaction } from '@payment/application/entities/transaction';
 
 export class TransactionViewModel {
   static toHttp(entity: Transaction) {

@@ -8,3 +8,15 @@ export const transactionMock = {
   expirationDate: new Date(),
   cvv: '123',
 };
+
+export const payableCreditMock = {
+  profileClientId: transactionMock.profileClientId,
+  paymentMethod: transactionMock.paymentMethod,
+  transaction: 1,
+}
+
+export const payableDebitMock = {
+  profileClientId: transactionMock.profileClientId,
+  paymentMethod: 'debit_card',
+  transaction: 1,
+}

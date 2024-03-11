@@ -1,4 +1,4 @@
-import { ProfileClient } from 'src/modules/profileClient/application/entities/profileClient';
+import { ProfileClient } from '@profileClient/application/entities/profileClient';
 
 export class ProfileClientViewModel {
   static toHttp(entity: ProfileClient) {

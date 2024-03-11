@@ -21,6 +21,6 @@ export class CreatePayableUseCase {
       fee,
     });
 
-    return await this.transactionRepository.createPayableTransaction(payable);
+    await this.transactionRepository.createPayableTransaction(payable);
   }
 }

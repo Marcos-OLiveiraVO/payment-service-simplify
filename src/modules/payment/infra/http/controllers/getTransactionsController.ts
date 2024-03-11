@@ -1,4 +1,4 @@
-import { GetTransactionsUseCase } from 'src/modules/payment/application/use-cases/getTransactionsUseCase';
+import { GetTransactionsUseCase } from '@payment/application/use-cases/getTransactionsUseCase';
 import { GetTransactionsDTO } from '../../adapters/dtos/transactionDTO';
 import { Controller, Get, HttpCode, Query } from '@nestjs/common';
 import { TransactionViewModel } from '../viewModels/transactionViewModel';

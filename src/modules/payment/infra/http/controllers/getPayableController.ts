@@ -1,9 +1,9 @@
-import { GetPayableUseCase } from 'src/modules/payment/application/use-cases/getPayableUseCase';
+import { GetPayableUseCase } from '@payment/application/use-cases/getPayableUseCase';
 import { GetPayableDTO } from '../../adapters/dtos/getPayableDTO';
 import { Controller, Get, HttpCode, Query } from '@nestjs/common';
 import { PayableViewModel } from '../viewModels/payableViewModel';
-import { ProfileClientViewModel } from 'src/modules/profileClient/infra/http/viewModels/profileClientViewModel';
-import { ProfileClient } from 'src/modules/profileClient/application/entities/profileClient';
+import { ProfileClientViewModel } from '@profileClient/infra/http/viewModels/profileClientViewModel';
+import { ProfileClient } from '@profileClient/application/entities/profileClient';
 
 @Controller('payable')
 export class GetPayableController {
