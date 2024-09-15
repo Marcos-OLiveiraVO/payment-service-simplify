@@ -1,5 +1,5 @@
 import { transaction as transactionModel } from '@prisma/client';
-import { Transaction as transactionEntity } from 'src/modules/payment/application/entities/transaction';
+import { Transaction as transactionEntity } from '@payment/application/entities/transaction';
 
 export interface TransactionMapperToDatabaseOutput extends transactionModel {}
 

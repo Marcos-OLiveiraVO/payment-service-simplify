@@ -9,10 +9,16 @@
     "target": "ES2021",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,
+    "paths": {
+      "@shared/*": ["shared/*"],
+      "@payment/*": ["modules/payment/*"],
+      "@profileClient/*": ["modules/profileClient/*"]
+    },
+    "resolveJsonModule": true,
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,

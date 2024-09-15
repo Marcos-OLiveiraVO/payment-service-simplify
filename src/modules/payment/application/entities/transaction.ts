@@ -23,6 +23,10 @@ export class Transaction {
     return this._id;
   }
 
+  public set id(id: number | undefined) {
+    this._id = id;
+  }
+
   public get amount(): number {
     return this.props.amount;
   }

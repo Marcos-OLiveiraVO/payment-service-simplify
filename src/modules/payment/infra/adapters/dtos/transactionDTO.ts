@@ -1,7 +1,12 @@
 import { Transform } from 'class-transformer';
-import { IsDate, IsNotEmpty, IsNumber, IsString, Length } from 'class-validator';
+import { IsDate, IsNotEmpty, IsNumber, IsOptional, IsPositive, IsString, Length } from 'class-validator';
 
 export class CreateTransactionDTO {
+  @IsNumber({}, { message: 'profileClientId must be a number' })
+  @IsPositive({ message: 'profileClientID must be a positive number' })
+  @IsNotEmpty({ message: 'profileClientId must not be empty' })
+  profileClientId: number;
+
   @IsNotEmpty({ message: 'amount must not be empty' })
   @IsNumber({}, { message: 'amount must be number' })
   amount: number;
@@ -13,7 +18,7 @@ export class CreateTransactionDTO {
 
   @IsNotEmpty({ message: 'paymentMethod must not be empty' })
   @IsString({ message: 'paymentMethod must be a string' })
-  @Length(8, 10, { message: 'paymentMethod must be between 8 and 10 characters' })
+  @Length(8, 12, { message: 'paymentMethod must be between 8 and 10 characters' })
   paymentMethod: string;
 
   @IsNotEmpty({ message: 'cardNumber must not be empty' })
@@ -35,3 +40,17 @@ export class CreateTransactionDTO {
   @Length(3, 3, { message: 'cvv must be exactly 3 numbers' })
   cvv: string;
 }
+
+export class BasePagination {
+  @IsOptional({ message: 'limit must be optional' })
+  @IsNumber({}, { message: 'limit must be a number' })
+  @IsPositive({ message: 'limit must be a positive number' })
+  limit: number;
+
+  @IsOptional({ message: 'page must be optional' })
+  @IsNumber({}, { message: 'page must be a number' })
+  @IsPositive({ message: 'page must be a positive number' })
+  page: number;
+}
+
+export class GetTransactionsDTO extends BasePagination {}
